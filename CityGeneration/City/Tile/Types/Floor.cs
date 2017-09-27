@@ -31,7 +31,7 @@ namespace CityGeneration.City.Tile.Types
         public override void Load()
         {
             ContentManager cm = Game1.serviceContainer.GetService<ContentManager>();
-            cm.Load<Texture2D>("Testsheet");
+            GetTexture = cm.Load<Texture2D>("Testsheet");
         }
 
         public override void Update()

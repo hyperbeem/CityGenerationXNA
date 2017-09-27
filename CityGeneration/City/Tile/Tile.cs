@@ -12,10 +12,13 @@ namespace CityGeneration.City.Tile
 {
     public abstract class Tile
     {
+        public int tileDim = 16;
+
         private Texture2D _Texture;
         public Texture2D GetTexture
         {
             get { return _Texture; }
+            protected set { _Texture = value; }
         }
 
         private int _Meta;
@@ -23,8 +26,6 @@ namespace CityGeneration.City.Tile
         {
             get { return _Meta; }
         }
-
-        public int tileDim = 16;
 
         private Rectangle _DrawBox;
         public Rectangle GetDrawBox
