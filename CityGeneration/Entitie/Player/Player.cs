@@ -20,7 +20,7 @@ namespace CityGeneration.Entitie.Player
         private Texture2D _PlayerTexture;
 
         private float _angleTo;
-        private float _moveSpeed = 1.5f;
+        private float _moveSpeed = 2.5f;
 
         private Vector2 _rCamPos;
         public Vector2 CurrentCamPos
