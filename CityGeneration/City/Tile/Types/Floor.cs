@@ -8,22 +8,30 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using CityGeneration.City.Tile.Util;
+
 using CityGeneration;
 
 namespace CityGeneration.City.Tile.Types
 {
     public class Floor : Tile
     {
-        public Floor(int meta) : base (meta)
+        public Floor(int meta, Location2 location) : base (meta, location)
         {
             Load();
             SetRectangle(meta);
         }
 
-        private void SetRectangle(int meta )
+        public Floor(int meta, int x, int y) : base (meta, x,y)
         {
-            int tX = meta / (GetTexture.Width / tileDim);
-            int tY = meta % (GetTexture.Width / tileDim);
+            Load();
+            SetRectangle(meta);
+        }
+
+        private void SetRectangle(int meta)
+        {
+            int tY = meta / (GetTexture.Width / tileDim);
+            int tX = meta % (GetTexture.Width / tileDim);
 
             GetDrawBox = new Rectangle(tX * tileDim, tY * tileDim, tileDim, tileDim);
         }
@@ -36,12 +44,12 @@ namespace CityGeneration.City.Tile.Types
 
         public override void Update()
         {
-            throw new NotImplementedException();
+
         }
 
-        public override void Draw(int offsetX, int offsetY,int x, int y, SpriteBatch sb)
+        public override void Draw(SpriteBatch sb)
         {
-            sb.Draw(GetTexture, new Vector2((float)(offsetX * tileDim) + (x * tileDim), (float)(offsetY * tileDim) + (y * tileDim)), GetDrawBox, Color.White);
+            sb.Draw(GetTexture, new Vector2((_TileLocation.X * tileDim),(_TileLocation.Y * tileDim)), GetDrawBox, Color.White);
         }
     }
 }

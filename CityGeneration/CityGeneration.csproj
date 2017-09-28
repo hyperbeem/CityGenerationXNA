@@ -49,6 +49,7 @@
     <Compile Include="City\Tile\Tile.cs" />
     <Compile Include="City\Tile\TileManager.cs" />
     <Compile Include="City\Tile\Types\Floor.cs" />
+    <Compile Include="City\Tile\Util\Common.cs" />
     <Compile Include="Entitie\AnimationHandler.cs" />
     <Compile Include="Entitie\AnimationSequence.cs" />
     <Compile Include="Entitie\Sprite.cs" />

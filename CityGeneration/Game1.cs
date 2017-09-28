@@ -6,6 +6,8 @@ using CityGeneration.Util;
 using CityGeneration.Entitie.Player;
 using Microsoft.Xna.Framework.Content;
 
+using CityGeneration.City.Tile;
+
 //https://codereview.stackexchange.com/questions/138578/generate-buildings-in-city
 namespace CityGeneration
 {
@@ -16,6 +18,7 @@ namespace CityGeneration
         SpriteBatch spriteBatch;
         Camera gameCam;
         Player player;
+        TileManager tm;
 
         public Game1()
         {
@@ -26,10 +29,10 @@ namespace CityGeneration
 
         protected override void Initialize()
         {
-            base.Initialize();
-
             serviceContainer.AddService(GraphicsDevice);
             serviceContainer.AddService(Content);
+
+            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -38,6 +41,12 @@ namespace CityGeneration
 
             gameCam = new Camera(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             gameCam.FollowingPlayer = true;
+
+            tm = new TileManager();
+
+            for (byte y = 0; y < 32; y++)
+                for (byte x = 0; x < 41; x++)
+                    tm.AddBackgroundTile(Rand.Random(0,3), x, y);
 
             Texture2D pTexture = Content.Load<Texture2D>("Hyper2");
             player = new Player(Content, pTexture, Vector2.Zero, new Vector2(pTexture.Bounds.Center.X, pTexture.Bounds.Center.Y));
@@ -54,6 +63,8 @@ namespace CityGeneration
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            tm.Update();
+
             player.CurrentCamPos = gameCam.GetPosition;
             player.Update();
             gameCam.Update(player.GetPosition);
@@ -64,9 +75,14 @@ namespace CityGeneration
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null,null,null,null, gameCam.getTransformation(GraphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp,null,null,null, gameCam.getTransformation(GraphicsDevice));
+            tm.Draw(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, gameCam.getTransformation(GraphicsDevice));
             player.Draw(spriteBatch);
             spriteBatch.End();
+
 
             base.Draw(gameTime);
         }

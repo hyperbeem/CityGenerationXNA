@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/hyper/Documents/C#/CityGeneration/CityGeneration/Content/Testsheet.png</SourceFile>
-  <SourceTime>2017-09-28T09:25:18.154966+01:00</SourceTime>
-  <DestFile>C:/Users/hyper/Documents/C#/CityGeneration/CityGeneration/Content/bin/Windows/Testsheet.xnb</DestFile>
-  <DestTime>2017-09-28T09:25:21.9690389+01:00</DestTime>
+  <SourceFile>C:/Users/hyper/Documents/C#/CityGeneration/CityGeneration/Content/part1.png</SourceFile>
+  <SourceTime>2017-09-28T11:08:34.851883+01:00</SourceTime>
+  <DestFile>C:/Users/hyper/Documents/C#/CityGeneration/CityGeneration/Content/bin/Windows/part1.xnb</DestFile>
+  <DestTime>2017-09-28T11:09:04.596243+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T15:05:36+00:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

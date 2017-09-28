@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CityGeneration.City.Tile.Util;
+using CityGeneration.City.Tile.Types;
+using Microsoft.Xna.Framework.Graphics;
+
 namespace CityGeneration.City.Tile
 {
     public enum TileType
@@ -23,17 +27,22 @@ namespace CityGeneration.City.Tile
             _Decoration = new List<Tile>();
         }
 
+        public void AddBackgroundTile(int meta, int x, int y)
+        {
+            var f = new Floor(meta, x, y);
+            _Background.Add(f);
+        }
+
         public void Update()
         {
             foreach (Tile t in _Background)
                 t.Update();
-            foreach (Tile t in _Decoration)
-                t.Update();
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch sb)
         {
-
+            foreach (Tile t in _Background)
+                t.Draw(sb);
         }
     }
 }
